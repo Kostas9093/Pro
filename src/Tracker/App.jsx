@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getWeekNumber, calculateMaintenance } from './utils';
 import UserPrompt from './UserPrompt';
+import './tracker.module.css';
+
 
 
 function getStartOfWeek(date) {
@@ -188,6 +190,11 @@ export default function TrackerApp() {
             </Link>
           );
         })}
+      </div>
+       <div className="mt-4">
+        <Link to="/" className="bg-red-500 text-white px-4 py-2 rounded">
+          Exit to Home
+        </Link>
       </div>
     </div>
   );

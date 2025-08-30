@@ -1,11 +1,15 @@
 // Recipe app.jsx
-import React, { useState, useEffect } from 'react'
-import RecipeForm from './RecipeFormRecipeForm'
+import React, { useState } from 'react'
+import RecipeForm from './RecipeForm'
 import NutritionSummary from './NutritionSummary'
 import PortionControl from './PortionControl'
 import { loadRecipes, saveRecipe } from './LocalStorageUtils'
+import './recipe.module.css';
+import { Link } from "react-router-dom";
 
-function App() {
+
+
+function RecipeApp() {
   const [recipes, setRecipes] = useState(loadRecipes())
   const [currentRecipe, setCurrentRecipe] = useState(null)
   const [portionCount, setPortionCount] = useState(1)
@@ -30,6 +34,7 @@ function App() {
     setCurrentRecipe(recipe)
     setView('details')
   }
+
 
   const handleDelete = (name) => {
     const updatedRecipes = recipes.filter(r => r.name !== name)
@@ -76,8 +81,14 @@ function App() {
           </div>
         </>
       )}
+       <div className="mt-4">
+        <Link to="/" className="bg-red-500 text-white px-4 py-2 rounded">
+          Exit to Home
+        </Link>
+      </div>
     </div>
+    
   )
 }
 
-export default RecipeApp()
+export default RecipeApp;
