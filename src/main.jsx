@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";              // Welcome page
 import RecipeApp from "./recipe/RApp";   // Your recipe app
 import TrackerApp from "./Tracker/TApp"; // Your tracker app
