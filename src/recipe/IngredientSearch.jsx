@@ -1,56 +1,43 @@
-import React, { useState } from 'react'
-import { NUTRITION_DB } from './NutritionDB'
+import React, { useState } from "react";
+import { NUTRITION_DB } from "./NutritionDB.js";
 
-function IngredientSearch({ onSelect }) {
-  const [query, setQuery] = useState('')
-  const [results, setResults] = useState([])
-  const [selectedProduct, setSelectedProduct] = useState(null)
+export default function IngredientSearch({ onSelect }) {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
 
-  const search = (q) => {
-    setQuery(q)
-    setSelectedProduct(null) // reset selection
-    if (q.length < 3) {
-      setResults([])
-      return
+  const handleSearch = (e) => {
+    const q = e.target.value;
+    setQuery(q);
+    if (!q) {
+      setResults([]);
+      return;
     }
-      // simple case-insensitive search
-    const matches = Object.keys(NUTRITION_DB).filter(item =>
-      item.toLowerCase().includes(q.toLowerCase())
-    )
+    const filtered = Object.keys(NUTRITION_DB).filter((key) =>
+      key.toLowerCase().includes(q.toLowerCase())
+    );
+    setResults(filtered.map((key) => ({ name: key, ...NUTRITION_DB[key] })));
+  };
 
-    setResults(matches.slice(0, 10))
-  }
-   
-  
-
-    const handleSelect = (name) => {
-    setQuery(name)
-    setResults([])
-    onSelect({ name }) // just send the name back
-  }
   return (
-    <div className="relative">
+    <div className="mt-4">
       <input
-        className="border p-2 w-full"
+        type="text"
         value={query}
-        onChange={(e) => search(e.target.value)}
-        placeholder="Search ingredients..."
+        onChange={handleSearch}
+        placeholder="Search ingredient"
+        className="border px-2 py-1 rounded w-full"
       />
-      {results.length > 0 && (
-        <ul className="absolute z-10 bg-white border w-full max-h-48 overflow-y-auto">
-          {results.map((name, idx) => (
-            <li
-              key={idx}
-              className="p-2 hover:bg-gray-200 cursor-pointer"
-              onClick={() => handleSelect(name)}
-            >
-              {name}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className="mt-2 border rounded p-2 bg-gray-50 max-h-40 overflow-y-auto">
+        {results.map((food, idx) => (
+          <li
+            key={idx}
+            className="cursor-pointer hover:bg-gray-200 p-1"
+            onClick={() => onSelect(food)}
+          >
+            <strong>{food.name}</strong> — {food.calories} kcal, P {food.protein}g, C {food.carbs}g, F {food.fat}g
+          </li>
+        ))}
+      </ul>
     </div>
-  )
+  );
 }
-
-export default IngredientSearch
