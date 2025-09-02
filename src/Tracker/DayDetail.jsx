@@ -204,7 +204,7 @@ export default function DayDetail() {
             <br />
             Calories: {data[dayName].total} kcal
             <br />
-            Protein: {totalMacros.protein} g, Carbs: {totalMacros.carbs} g, Fat: {totalMacros.fat} g
+            Protein: {totalMacros.protein.toFixed(1)} g, Carbs: {totalMacros.carbs.toFixed(1)} g, Fat: {totalMacros.fat.toFixed(1)} g
           </div>
 
           <div className="mb-4" style={{ width: '100%', height: 250 }}>

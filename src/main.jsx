@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import Home from "./Home";              // Welcome page
-import RecipeApp from "./recipe/App";   // Your recipe app
-import TrackerApp from "./Tracker/App"; // Your tracker app
+import RecipeApp from "./recipe/RApp";   // Your recipe app
+import TrackerApp from "./Tracker/TApp"; // Your tracker app
 import DayDetailWrapper from "./Tracker/DayDetail"; // wrapper for /tracker/day/:date
 
-//  import "./home.module.css";
+  // import "./home.module.css";
 
 function App() {
   return (

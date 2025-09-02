@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import './index.css';
-import App from './App';
+import './tracker.module.css';
+import App from './TApp';
 import DayDetail from './DayDetail';
 import MonthlyProgress from './MonthlyProgress';
 
